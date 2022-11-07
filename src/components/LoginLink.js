@@ -1,5 +1,16 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
+import { useGlobalUserProvider } from "../context/user";
+import { useGlobalCartContext } from "../context/cart";
 export default function LoginLink() {
-  return <h1>hello from login link</h1>;
+  const {user, userLogout}= useGlobalUserProvider();
+  const {ClearCart}= useGlobalCartContext()
+  if(user.token){
+     return (<button className="login-btn" onClick={()=>{
+      userLogout()
+      ClearCart()
+     }}> logout </button>
+     );
+  }
+  return <Link to ='/login'> Login </Link>
 }

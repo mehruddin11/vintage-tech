@@ -24,7 +24,7 @@ Variables
   --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
   --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
   --mainBorderRadius: 0.25rem;
-  --smallWidth: 85vw;
+  --smallWidth: 90vw;
   --maxWidth: 40rem;
   --fullWidth: 1170px;
 }
@@ -62,10 +62,17 @@ p {
 }
 ul {
   list-style-type: none;
+  text-decoration: none;
 }
+
 a {
   text-decoration: none;
   color: var(--mainBlack);
+}
+.header-link{
+  text-transform: uppercase;
+  color: red;
+  text-decoration: none;
 }
 img {
   width: 100%;

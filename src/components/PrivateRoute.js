@@ -1,5 +1,11 @@
 import React from "react";
-
-export default function PrivateRoute() {
-  return <h1>hello from private route</h1>;
+import {Route, Redirect}from 'react-router-dom'
+import { useGlobalUserProvider } from "../context/user";
+export default function PrivateRoute({children,...rest}) {
+  const {user}= useGlobalUserProvider();
+  return <Route {...rest} render = {()=>{
+    return user.token?children:<Redirect to ="*"/>
+  }} >
+    
+  </Route>
 }

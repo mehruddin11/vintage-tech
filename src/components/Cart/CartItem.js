@@ -1,14 +1,15 @@
 import React from "react";
 import { useGlobalCartContext } from "../../context/cart";
 import { FaAngleUp, FaAngleDown } from "react-icons/fa";
-export default function CartItem({ id, book_image, title, amount, price }) {
+export default function CartItem({ id, image, title, amount, price }) {
+  
   const {RemoveItem, IncreaseAmout, DecreaseAmount}= useGlobalCartContext()
   return (
     <article className="cart-item">
-      <img src={book_image} alt={title} />
+      <img src={image} alt={title} />
       <div>
         <h4> {title} </h4>
-        <h5> {price} </h5>
+        <h5> &#8377;{price} </h5>
         <button
           type="button"
           className="cart-btn remove-btn"

@@ -10,11 +10,13 @@ const ProductProvider = ({children}) =>{
     useEffect(()=>{
         setLoading(true)
         axios.get(`${Url}`).then(response =>{
-            const featured= FeaturedProducts(response.data)
-            setProducts(response.data)  
+            const featured= FeaturedProducts(response.data.data)
+            setProducts(response.data.data)
+            console.log(response.data.data)
             setFeatured(featured)
             setLoading(false)
-        })
+            
+        });
         return ()=>{}
     },[])
     return (

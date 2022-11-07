@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import localCart from '../utils/localCart'
+// import localCart from '../utils/localCart'
 function getCartfromLocalStorge(){
     return localStorage.getItem("cart")? JSON.parse(localStorage.getItem('cart')): []
 }
@@ -28,12 +28,12 @@ const CartProvider = ({children})=>{
     },[cart])
     // remove item 
     const RemoveItem =(id) =>{
-        setCart([...cart].filter(item => item.id !== id))
+        setCart([...cart].filter((item) => item.id !== id))
     }
     // inc amount 
     const IncreaseAmout =(id) =>{
         const newcart = [...cart].map((item)=>{
-            return item.id == id? {...item, amount:item.amount+1}:{...item}
+            return item.id === id? {...item, amount:item.amount+1}:{...item}
         })
         setCart(newcart)
     }
@@ -45,25 +45,27 @@ const CartProvider = ({children})=>{
         }
         else{
             const newcart = [...cart].map((item)=>{
-                return item.id == id? {...item, amount:item.amount-1}:{...item}
+                
+                return item.id === id? {...item, amount:item.amount-1}:{...item}
             })
             setCart(newcart)
         }
         
     }
     // add to cart 
-    const AddtoCart =(product) =>{
-        console.log(product)  
-        const  {id , book_image, title, price }= product;
-        const item= [...cart].find(item => item.id === id)
-        if(item){
+    const AddtoCart =(product,id) =>{
+       
+        const  {title, price }= product;
+        // eslint-disable-next-line 
+        const item= [...cart].find(item => id === id)
+        if(title){
             IncreaseAmout(id);
         }
-        else{
-            const newitem = {id,book_image,title,price,amount:1}
-            const newcart= [...cart, newitem];
-            setCart(newcart);
-        }
+        let image = product.image.data.attributes.formats.thumbnail.url
+        const newitem = {id,image,title,price,amount:1}
+        const newcart= [...cart, newitem];
+        setCart(newcart);
+        
     }
     const ClearCart =() =>{
         setCart([])
